@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/nav.ejs') %>
+
+    <main>
+        <% if (orderList.length > 0) { %>
+            <% orderList.forEach((order) => { %>
+                <p>Order <%= order[0].orderNumber %></p>
+                <% order.forEach((product) => { %>
+                    <ul>
+                        <li><%= product.productDetails.productName %> (<%= product.quantity %>)</li>
+                    </ul>
+                <% }); %>
+            <% }); %>
+        <% } else { %>
+            <p>Nothing to show in orders page yet!</p>
+        <% } %>
+    </main>
+
+</body>
+</html>
