@@ -63,7 +63,7 @@ PORT=3306
 EXPRESS_SESSION_KEY="your-secret-key"
 ```
 
-- **MySQL-Sequelize-Connect-Database** <br>
+- **MongoDB-Connect-Database** <br>
 Basically, **"./Model/database/dbConnection.js"** is used in **"./index.js"** to connect to database. Make sure the schema "shopping-website" is already created in MySQL for it to work.
 - **MySQL-Sequelize-Create-And-Associate-Models** <br>
 **"./Model/database/dbAssociation.js"** is used in **./index.js** so that all model associations and models are properly set. We need to only import dbAssociations.js in index.js.
