@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // MongoDB-Connect-Database
 // This is used to connect database
-// const { sequelize, databaseAuth } = require("./Model/dbConnection");
+const mongoConnect = require("./Model/dbConnection");
 
 const app = express();
 
@@ -54,6 +54,10 @@ app.use(
 // Instead of app.use and router file, we could have also used app.get
 // app.use(NoRoute);
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+// MongoDB-Connect-Database
+mongoConnect((dbConnectionResult) => {
+  app.listen(3000, () => {
+    console.log(dbConnectionResult);
+    console.log("Server started on port 3000");
+  });
 });
