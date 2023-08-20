@@ -56,8 +56,9 @@ app.use(
 
 // MongoDB-Connect-Database
 mongoConnect((dbConnectionResult) => {
+  console.log(dbConnectionResult);
+  
   app.listen(3000, () => {
-    console.log(dbConnectionResult);
     console.log("Server started on port 3000");
   });
 });
