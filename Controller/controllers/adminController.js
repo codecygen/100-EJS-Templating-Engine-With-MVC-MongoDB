@@ -1,4 +1,3 @@
-// MySQL-Sequelize-Manage-Database-Function-Operations
 const dbProductOperation = require("../../Model/operations/dbProductOperation");
 const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 

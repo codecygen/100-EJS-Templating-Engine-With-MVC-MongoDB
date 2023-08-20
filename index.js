@@ -28,7 +28,7 @@ app.set("view engine", "ejs");
 // it means views of ejs will be stored in /View/html directory
 app.set("views", "View/html");
 
-// const adminRoute = require("./Controller/routes/adminRoute");
+const adminRoute = require("./Controller/routes/adminRoute");
 // const shopRoute = require("./Controller/routes/shopRoute");
 // const NoRoute = require("./Controller/routes/NoRoute");
 
@@ -46,7 +46,7 @@ app.use(
 // Route only has "/add-product"
 // Combines to the Route /admin/add-product
 // Instead of app.use and router file, we could have also used app.get
-// app.use("/admin", adminRoute);
+app.use("/admin", adminRoute);
 
 // app.use(shopRoute);
 
@@ -57,7 +57,7 @@ app.use(
 // MongoDB-Connect-Database
 mongoConnect((dbConnectionResult) => {
   console.log(dbConnectionResult);
-  
+
   app.listen(3000, () => {
     console.log("Server started on port 3000");
   });
