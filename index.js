@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // MongoDB-Connect-Database
 // This is used to connect database
-const mongoConnect = require("./Model/dbConnection");
+const dbConnection = require("./Model/dbConnection");
 
 const app = express();
 
@@ -55,7 +55,7 @@ app.use("/admin", adminRoute);
 // app.use(NoRoute);
 
 // MongoDB-Connect-Database
-mongoConnect((dbConnectionResult) => {
+dbConnection.mongoConnect((dbConnectionResult) => {
   console.log(dbConnectionResult);
 
   app.listen(3000, () => {
