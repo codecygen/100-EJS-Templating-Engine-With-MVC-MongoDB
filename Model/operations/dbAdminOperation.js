@@ -1,4 +1,4 @@
-// const Tables = require("../dbAssociation");
+const Tables = require("../dbAssociation");
 // const createNextAdminId = require("./utils/createNextAdminId");
 
 const checkAndCreateAdminsAndUsers = async () => {
@@ -17,26 +17,33 @@ const checkAndCreateAdminsAndUsers = async () => {
   //   return allAdmins;
   // }
 
-  // const newUsers = [
-  //   {
-  //     userName: "Aras",
-  //     userEmail: "aras@gmail.com",
-  //     adminId: nextAdminId,
-  //   },
-  //   {
-  //     userName: "Jason",
-  //     userEmail: "jason@gmail.com",
-  //     adminId: nextAdminId + 1,
-  //   },
-  //   {
-  //     userName: "Alice",
-  //     userEmail: "alice@gmail.com",
-  //   },
-  //   {
-  //     userName: "Amanda",
-  //     userEmail: "amanda@gmail.com",
-  //   },
-  // ];
+  const newUsers = [
+    {
+      userName: "Aras",
+      userEmail: "aras@gmail.com",
+      adminId: 1,
+    },
+    {
+      userName: "Jason",
+      userEmail: "jason@gmail.com",
+      adminId: 2,
+    },
+    {
+      userName: "Alice",
+      userEmail: "alice@gmail.com",
+    },
+    {
+      userName: "Amanda",
+      userEmail: "amanda@gmail.com",
+    },
+  ];
+
+  try {
+    const userTable = new Tables.UserTable();
+    const result = await userTable.createUsers(newUsers);
+  } catch (err) {
+    console.error(err);
+  }
 
   // try {
   //   allAdmins = await Tables.UserTable.bulkCreate(newUsers);

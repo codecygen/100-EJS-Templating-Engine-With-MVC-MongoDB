@@ -7,10 +7,12 @@ class UserTable {
     this.adminId = adminId;
   }
 
-  // createUsers() {
-  //   const db = dbConnection.getDatabase();
-  //   db.collection("UserTable").inserMany()
-  // }
+  async createUsers(usersArray) {
+    const db = dbConnection.getDatabase();
+    const result = await db.collection("UserTable").insertMany(usersArray);
+    
+    return result;
+  }
 }
 
 module.exports = UserTable;
