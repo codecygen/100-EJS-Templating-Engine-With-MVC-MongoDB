@@ -1,32 +1,16 @@
-const Sequelize = require("sequelize");
-const { sequelize } = require("../dbConnection");
+const dbConnection = require("../dbConnection");
 
-const UserTable = sequelize.define(
-  "UserTable",
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
-    userName: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    userEmail: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    adminId: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
-    },
-  },
-  {
-    timestamps: false,
-    tableName: "UserTable",
+class UserTable {
+  constructor(userName, userEmail, adminId) {
+    this.userName = userName;
+    this.userEmail = userEmail;
+    this.adminId = adminId;
   }
-);
+
+  // createUsers() {
+  //   const db = dbConnection.getDatabase();
+  //   db.collection("UserTable").inserMany()
+  // }
+}
 
 module.exports = UserTable;

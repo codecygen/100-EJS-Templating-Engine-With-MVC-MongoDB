@@ -1,49 +1,51 @@
 // const Tables = require("../dbAssociation");
 // const createNextAdminId = require("./utils/createNextAdminId");
 
-// const checkAndCreateAdminsAndUsers = async () => {
-//   const nextAdminId = await createNextAdminId();
-//   let allAdmins;
+const checkAndCreateAdminsAndUsers = async () => {
+  console.log("Admins and users created!");
 
-//   try {
-//     allAdmins = await Tables.UserTable.findAll();
-//   } catch (err) {
-//     console.error(err);
-//   }
+  // const nextAdminId = await createNextAdminId();
+  // let allAdmins;
 
-//   if (allAdmins.length > 0) {
-//     return allAdmins;
-//   }
+  // try {
+  //   allAdmins = await Tables.UserTable.findAll();
+  // } catch (err) {
+  //   console.error(err);
+  // }
 
-//   const newUsers = [
-//     {
-//       userName: "Aras",
-//       userEmail: "aras@gmail.com",
-//       adminId: nextAdminId,
-//     },
-//     {
-//       userName: "Jason",
-//       userEmail: "jason@gmail.com",
-//       adminId: nextAdminId + 1,
-//     },
-//     {
-//       userName: "Alice",
-//       userEmail: "alice@gmail.com",
-//     },
-//     {
-//       userName: "Amanda",
-//       userEmail: "amanda@gmail.com",
-//     },
-//   ];
+  // if (allAdmins.length > 0) {
+  //   return allAdmins;
+  // }
 
-//   try {
-//     allAdmins = await Tables.UserTable.bulkCreate(newUsers);
-//   } catch (err) {
-//     console.error(err);
-//   }
+  // const newUsers = [
+  //   {
+  //     userName: "Aras",
+  //     userEmail: "aras@gmail.com",
+  //     adminId: nextAdminId,
+  //   },
+  //   {
+  //     userName: "Jason",
+  //     userEmail: "jason@gmail.com",
+  //     adminId: nextAdminId + 1,
+  //   },
+  //   {
+  //     userName: "Alice",
+  //     userEmail: "alice@gmail.com",
+  //   },
+  //   {
+  //     userName: "Amanda",
+  //     userEmail: "amanda@gmail.com",
+  //   },
+  // ];
 
-//   return allAdmins;
-// };
+  // try {
+  //   allAdmins = await Tables.UserTable.bulkCreate(newUsers);
+  // } catch (err) {
+  //   console.error(err);
+  // }
+
+  // return allAdmins;
+};
 
 // const getAllAdmins = async () => {
 //   let result;
@@ -97,10 +99,10 @@
 //   return result;
 // };
 
-// module.exports = {
-//   checkAndCreateAdminsAndUsers,
-//   getAllAdmins,
-//   getAllUsers,
-//   getOneUser,
-//   getAdminProducts,
-// };
+module.exports = {
+  checkAndCreateAdminsAndUsers,
+  // getAllAdmins,
+  // getAllUsers,
+  // getOneUser,
+  // getAdminProducts,
+};

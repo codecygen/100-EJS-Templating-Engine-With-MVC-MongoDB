@@ -12,6 +12,7 @@ require("dotenv").config();
 // MongoDB-Connect-Database
 // This is used to connect database
 const dbConnection = require("./Model/dbConnection");
+const dbAdminOperation = require("./Model/operations/dbAdminOperation");
 
 const app = express();
 
@@ -56,7 +57,8 @@ app.use("/admin", adminRoute);
 
 // MongoDB-Connect-Database
 dbConnection.mongoConnect((dbConnectionResult) => {
-  console.log(dbConnectionResult);
+  // console.log(dbConnectionResult);
+  dbAdminOperation.checkAndCreateAdminsAndUsers();
 
   app.listen(3000, () => {
     console.log("Server started on port 3000");
