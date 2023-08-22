@@ -7,16 +7,10 @@ const checkAndCreateAdminsAndUsers = async () => {
   console.log("Admins and users created!");
 
   // const nextAdminId = await createNextAdminId();
-  let allUsers;
-
-  try {
-    allUsers = await userTable.getUsers();
-  } catch (err) {
-    console.error(err);
-  }
+  const allUsers = await userTable.getUsers();
 
   if (allUsers.length > 0) {
-    return allUsers;
+    return;
   }
 
   const newUsers = [
@@ -45,14 +39,6 @@ const checkAndCreateAdminsAndUsers = async () => {
   } catch (err) {
     console.error(err);
   }
-
-  try {
-    allUsers = await userTable.getUsers();
-  } catch (err) {
-    console.error(err);
-  }
-
-  return allUsers;
 };
 
 // const getAllAdmins = async () => {

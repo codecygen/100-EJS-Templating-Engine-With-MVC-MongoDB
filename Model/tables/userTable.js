@@ -17,9 +17,16 @@ class UserTable {
   }
 
   async getUsers() {
-    const db = dbConnection.getDatabase();
-    const foundUsers = await db.collection("UserTable").find();
+    let foundUsers;
 
+    try {
+      const db = dbConnection.getDatabase();
+      const cursor = await db.collection("UserTable").find();
+      foundUsers = await cursor.toArray();
+    } catch {
+      (err) => console.error(err);
+    }
+    
     return foundUsers;
   }
 }
