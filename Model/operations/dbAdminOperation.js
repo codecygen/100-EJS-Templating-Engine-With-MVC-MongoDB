@@ -1,21 +1,23 @@
 const Tables = require("../dbAssociation");
 // const createNextAdminId = require("./utils/createNextAdminId");
 
+const userTable = new Tables.UserTable();
+
 const checkAndCreateAdminsAndUsers = async () => {
   console.log("Admins and users created!");
 
   // const nextAdminId = await createNextAdminId();
-  // let allAdmins;
+  let allUsers;
 
-  // try {
-  //   allAdmins = await Tables.UserTable.findAll();
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  try {
+    allUsers = await userTable.getUsers();
+  } catch (err) {
+    console.error(err);
+  }
 
-  // if (allAdmins.length > 0) {
-  //   return allAdmins;
-  // }
+  if (allUsers.length > 0) {
+    return allUsers;
+  }
 
   const newUsers = [
     {
@@ -39,19 +41,18 @@ const checkAndCreateAdminsAndUsers = async () => {
   ];
 
   try {
-    const userTable = new Tables.UserTable();
-    const result = await userTable.createUsers(newUsers);
+    await userTable.createUsers(newUsers);
   } catch (err) {
     console.error(err);
   }
 
-  // try {
-  //   allAdmins = await Tables.UserTable.bulkCreate(newUsers);
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  try {
+    allUsers = await userTable.getUsers();
+  } catch (err) {
+    console.error(err);
+  }
 
-  // return allAdmins;
+  return allUsers;
 };
 
 // const getAllAdmins = async () => {
