@@ -7,8 +7,9 @@ class UserTable {
     this.adminId = adminId;
   }
 
+  db = dbConnection.getDatabase();
+
   async createUsers(usersArray) {
-    const db = dbConnection.getDatabase();
     const result = await db.collection("UserTable").insertMany(usersArray);
 
     dbConnection.closeDatabase();
@@ -20,12 +21,13 @@ class UserTable {
     let foundUsers;
 
     try {
-      const db = dbConnection.getDatabase();
       const cursor = await db.collection("UserTable").find();
       foundUsers = await cursor.toArray();
     } catch {
       (err) => console.error(err);
     }
+
+    dbConnection.closeDatabase();
     
     return foundUsers;
   }

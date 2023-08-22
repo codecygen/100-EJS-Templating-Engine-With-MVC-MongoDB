@@ -33,7 +33,6 @@ const closeDatabase = () => {
   if (_client) {
     _client.close();
   }
-  console.log("MOngoDB connection closed");
 };
 
 module.exports = {
