@@ -39,4 +39,6 @@ class UserTable {
   }
 }
 
-module.exports = UserTable;
+const userTable = new UserTable();
+
+module.exports = userTable;

@@ -1,13 +1,8 @@
 const Tables = require("../dbAssociation");
-// const createNextAdminId = require("./utils/createNextAdminId");
-
-const userTable = new Tables.UserTable();
+const { v4: uuidv4 } = require("uuid");
 
 const checkAndCreateAdminsAndUsers = async () => {
-  console.log("Admins and users created!");
-
-  // const nextAdminId = await createNextAdminId();
-  const allUsers = await userTable.getUsers();
+  const allUsers = await Tables.userTable.getUsers();
 
   if (allUsers.length > 0) {
     return;
@@ -17,12 +12,12 @@ const checkAndCreateAdminsAndUsers = async () => {
     {
       userName: "Aras",
       userEmail: "aras@gmail.com",
-      adminId: 1,
+      adminId: uuidv4(),
     },
     {
       userName: "Jason",
       userEmail: "jason@gmail.com",
-      adminId: 2,
+      adminId: uuidv4(),
     },
     {
       userName: "Alice",
@@ -34,7 +29,7 @@ const checkAndCreateAdminsAndUsers = async () => {
     },
   ];
 
-  await userTable.createUsers(newUsers);
+  await Tables.userTable.createUsers(newUsers);
 };
 
 // const getAllAdmins = async () => {
