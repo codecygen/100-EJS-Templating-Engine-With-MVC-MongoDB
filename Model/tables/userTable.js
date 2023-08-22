@@ -7,10 +7,15 @@ class UserTable {
     this.adminId = adminId;
   }
 
-  db = dbConnection.getDatabase();
-
   async createUsers(usersArray) {
-    const result = await db.collection("UserTable").insertMany(usersArray);
+    let result;
+
+    try {
+      const db = dbConnection.getDatabase();
+      result = await db.collection("UserTable").insertMany(usersArray);
+    } catch {
+      (err) => console.error(err);
+    }
 
     dbConnection.closeDatabase();
 
@@ -21,6 +26,7 @@ class UserTable {
     let foundUsers;
 
     try {
+      const db = dbConnection.getDatabase();
       const cursor = await db.collection("UserTable").find();
       foundUsers = await cursor.toArray();
     } catch {
@@ -28,7 +34,7 @@ class UserTable {
     }
 
     dbConnection.closeDatabase();
-    
+
     return foundUsers;
   }
 }

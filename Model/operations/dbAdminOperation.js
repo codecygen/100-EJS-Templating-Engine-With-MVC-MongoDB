@@ -34,11 +34,7 @@ const checkAndCreateAdminsAndUsers = async () => {
     },
   ];
 
-  try {
-    await userTable.createUsers(newUsers);
-  } catch (err) {
-    console.error(err);
-  }
+  await userTable.createUsers(newUsers);
 };
 
 // const getAllAdmins = async () => {
