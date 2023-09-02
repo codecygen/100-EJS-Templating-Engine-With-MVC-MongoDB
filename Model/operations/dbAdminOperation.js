@@ -45,18 +45,11 @@ const checkAndCreateAdminsAndUsers = async () => {
 //   return allAdmins;
 // };
 
-// const getAllUsers = async () => {
-//   let result;
+const getAllUsers = async () => {
+  const allUsers = await Tables.userTable.getUsers();
 
-//   try {
-//     result = await Tables.UserTable.findAll();
-//   } catch (err) {
-//     console.error(err);
-//   }
-
-//   const allUsers = result.map((value) => value.toJSON());
-//   return allUsers;
-// };
+  return allUsers;
+};
 
 // const getOneUser = async (userId) => {
 //   let result;
@@ -87,7 +80,7 @@ const checkAndCreateAdminsAndUsers = async () => {
 module.exports = {
   checkAndCreateAdminsAndUsers,
   // getAllAdmins,
-  // getAllUsers,
+  getAllUsers,
   // getOneUser,
   // getAdminProducts,
 };

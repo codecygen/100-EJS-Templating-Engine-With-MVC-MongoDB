@@ -10,7 +10,6 @@ let _client;
 const mongoConnect = (callbackFunc) => {
   MongoClient.connect(URL)
     .then((dbConnectionResult) => {
-      console.log("Connected to MongoDB Atlas!");
       _db = dbConnectionResult.db();
       _client = dbConnectionResult;
       callbackFunc(dbConnectionResult);

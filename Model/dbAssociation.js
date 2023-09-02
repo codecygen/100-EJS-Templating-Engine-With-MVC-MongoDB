@@ -1,6 +1,8 @@
 // This file is used to create associations in between tables.
 const ProductTable = require("./tables/productTable");
-const userTable = require("./tables/userTable");
+const UserTable = require("./tables/userTable");
+
+const userTable = new UserTable();
 
 // const CartTable = require("./tables/cartTable");
 // const OrderTable = require("../Model/tables/orderTable");

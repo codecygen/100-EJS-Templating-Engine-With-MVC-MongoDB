@@ -30,7 +30,7 @@ app.set("view engine", "ejs");
 app.set("views", "View/html");
 
 const adminRoute = require("./Controller/routes/adminRoute");
-// const shopRoute = require("./Controller/routes/shopRoute");
+const shopRoute = require("./Controller/routes/shopRoute");
 // const NoRoute = require("./Controller/routes/NoRoute");
 
 // Express-Session-Keep-Cookie-in-req.session
@@ -49,7 +49,7 @@ app.use(
 // Instead of app.use and router file, we could have also used app.get
 app.use("/admin", adminRoute);
 
-// app.use(shopRoute);
+app.use(shopRoute);
 
 // Unspecified routes, 404 page
 // Instead of app.use and router file, we could have also used app.get
@@ -57,7 +57,6 @@ app.use("/admin", adminRoute);
 
 // MongoDB-Connect-Database
 dbConnection.mongoConnect((dbConnectionResult) => {
-  // console.log(dbConnectionResult);
   dbAdminOperation.checkAndCreateAdminsAndUsers();
 
   app.listen(3000, () => {

@@ -29,16 +29,16 @@ class UserTable {
       const db = dbConnection.getDatabase();
       const cursor = await db.collection("UserTable").find();
       foundUsers = await cursor.toArray();
-    } catch {
-      (err) => console.error(err);
-    }
 
-    dbConnection.closeDatabase();
+    } catch (err) {
+      console.error("Error fetching users:", err);
+      throw err;
+    } finally {
+      // dbConnection.closeDatabase();
+    }
 
     return foundUsers;
   }
 }
 
-const userTable = new UserTable();
-
-module.exports = userTable;
+module.exports = UserTable;
