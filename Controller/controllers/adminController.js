@@ -7,12 +7,7 @@ exports.getAddProduct = (req, res, next) => {
     renderTitle: "Add Product",
     pagePath: "/admin/add-product",
     editing: false,
-    selectedUser: {
-      userId: 1,
-      userName: "Aras",
-      userEmail: "aras@gmail.com",
-      adminId: 1,
-    },
+    selectedUser: res.locals.selectedUser,
   });
 };
 
