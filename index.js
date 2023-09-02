@@ -43,6 +43,21 @@ app.use(
   })
 );
 
+app.use(async (req, res, next) => {
+  let allUsers;
+
+  if (!req.session.userId) {
+    allUsers = await dbAdminOperation.getAllUsers();
+
+    req.session.userId = allUsers[0]._id;
+    req.session.userName = allUsers[0].userName;
+    req.session.userEmail = allUsers[0].userEmail;
+    req.session.adminId = allUsers[0].adminId;
+  }
+
+  next();
+});
+
 // Extra layer "/admin"
 // Route only has "/add-product"
 // Combines to the Route /admin/add-product

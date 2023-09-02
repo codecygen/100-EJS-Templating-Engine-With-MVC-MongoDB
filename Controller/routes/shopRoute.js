@@ -2,8 +2,8 @@ const express = require("express");
 const shopController = require("../controllers/shopController");
 const router = express.Router();
 
-// const populateSelectedUser = require("../middleware/populateSelectedUser");
-// router.use(populateSelectedUser);
+const populateSelectedUser = require("../middleware/populateSelectedUser");
+router.use(populateSelectedUser);
 
 // router.get("/", shopController.getIndex);
 

@@ -2,9 +2,9 @@ const express = require("express");
 const adminController = require("../controllers/adminController");
 const router = express.Router();
 
-// const populateSelectedUser = require("../middleware/populateSelectedUser");
+const populateSelectedUser = require("../middleware/populateSelectedUser");
 // const checkAdmin = require("../middleware/checkAdmin");
-// router.use(populateSelectedUser);
+router.use(populateSelectedUser);
 
 // /admin/add-product
 // Because there is an extra layer in index.js of server
