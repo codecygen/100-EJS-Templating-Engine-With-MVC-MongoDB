@@ -1,3 +1,4 @@
+// Express-Session-Keep-Cookie-in-req.session
 const populateSelectedUser = (req, res, next) => {
 
   const selectedUser = {
