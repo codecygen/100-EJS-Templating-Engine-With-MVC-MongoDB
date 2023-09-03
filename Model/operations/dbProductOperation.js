@@ -11,23 +11,27 @@ const addNewProduct = async (newProduct) => {
     productImg,
     adminId
   );
-  
+
   await productTable.save();
 };
 
-// const getAllProducts = async () => {
-//   let result;
+const getAllProducts = async () => {
+  const allProducts = await Tables.ProductTable.getProducts();
 
-//   try {
-//     result = await Tables.ProductTable.findAll();
-//   } catch (err) {
-//     console.error(err);
-//   }
+  return allProducts;
 
-//   const allProducts = result.map((value) => value.toJSON());
+  // let result;
 
-//   return allProducts;
-// };
+  // try {
+  //   result = await Tables.ProductTable.findAll();
+  // } catch (err) {
+  //   console.error(err);
+  // }
+
+  // const allProducts = result.map((value) => value.toJSON());
+
+  // return allProducts;
+};
 
 // const getOneProduct = async (productId) => {
 //   let result;
@@ -63,7 +67,7 @@ const addNewProduct = async (newProduct) => {
 
 module.exports = {
   addNewProduct,
-  // getAllProducts,
+  getAllProducts,
   // getOneProduct,
   // updateOneProduct,
   // deleteOneProduct,

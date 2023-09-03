@@ -6,7 +6,7 @@ const router = express.Router();
 const populateSelectedUser = require("../middleware/populateSelectedUser");
 router.use(populateSelectedUser);
 
-// router.get("/", shopController.getIndex);
+router.get("/", shopController.getIndex);
 
 // router.get("/products", shopController.getProducts);
 

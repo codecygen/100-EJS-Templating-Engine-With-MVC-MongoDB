@@ -1,4 +1,4 @@
-// const dbProductOperation = require("../../Model/operations/dbProductOperation");
+const dbProductOperation = require("../../Model/operations/dbProductOperation");
 const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 // const dbCartOperation = require("../../Model/operations/dbCartOperation");
 // const dbOrderOperation = require("../../Model/operations/dbOrderOperation");
@@ -26,16 +26,16 @@ const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 //   });
 // };
 
-// exports.getIndex = async (req, res, next) => {
-//   const products = await dbProductOperation.getAllProducts();
+exports.getIndex = async (req, res, next) => {
+  const products = await dbProductOperation.getAllProducts();
 
-//   res.render("shop/index", {
-//     pagePath: "/",
-//     productList: products,
-//     renderTitle: "Shop",
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+  res.render("shop/index", {
+    pagePath: "/",
+    productList: products,
+    renderTitle: "Shop",
+    selectedUser: res.locals.selectedUser,
+  });
+};
 
 // exports.getCart = async (req, res, next) => {
 //   const currentUser = await dbAdminOperation.getOneUser(req.session.userId);

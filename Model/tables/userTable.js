@@ -22,7 +22,7 @@ class UserTable {
     return result;
   }
 
-  async getUsers() {
+  static async getUsers() {
     let foundUsers;
 
     try {
@@ -34,6 +34,7 @@ class UserTable {
       console.error("Error fetching users:", err);
       throw err;
     } finally {
+      // If we close database it does not fetch anything.
       // dbConnection.closeDatabase();
     }
 

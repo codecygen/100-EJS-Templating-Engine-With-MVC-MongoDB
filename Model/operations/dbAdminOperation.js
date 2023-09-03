@@ -2,9 +2,7 @@ const Tables = require("../dbAssociation");
 const { v4: uuidv4 } = require("uuid");
 
 const checkAndCreateAdminsAndUsers = async () => {
-  const userTable = new Tables.UserTable();
-
-  const allUsers = await userTable.getUsers();
+  const allUsers = await Tables.UserTable.getUsers();
 
   if (allUsers.length > 0) {
     return;
@@ -48,8 +46,7 @@ const checkAndCreateAdminsAndUsers = async () => {
 // };
 
 const getAllUsers = async () => {
-  const userTable = new Tables.UserTable();
-  const allUsers = await userTable.getUsers();
+  const allUsers = await Tables.UserTable.getUsers();
 
   return allUsers;
 };

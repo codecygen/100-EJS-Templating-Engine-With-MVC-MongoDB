@@ -20,6 +20,24 @@ class ProductTable {
 
     dbConnection.closeDatabase();
   }
+
+  static async getProducts() {
+    let foundProducts;
+
+    try {
+      const db = dbConnection.getDatabase();
+      const cursor = await db.collection("ProductTable").find();
+      foundProducts = await cursor.toArray();
+    } catch (err) {
+      console.error("Error fetching products:", err);
+      throw err;
+    } finally {
+      // If we close database it does not fetch anything.
+      // dbConnection.closeDatabase();
+    }
+
+    return foundProducts;
+  }
 }
 
 module.exports = ProductTable;
