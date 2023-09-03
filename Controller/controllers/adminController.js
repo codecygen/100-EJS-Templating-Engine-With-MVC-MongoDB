@@ -25,7 +25,7 @@ exports.postAddProduct = async (req, res, next) => {
 
   await dbProductOperation.addNewProduct(newProduct);
 
-  // res.redirect("/");
+  res.redirect("/");
 };
 
 // exports.getProducts = async (req, res, next) => {

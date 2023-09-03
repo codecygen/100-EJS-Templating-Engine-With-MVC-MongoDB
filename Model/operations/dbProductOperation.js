@@ -1,15 +1,18 @@
 const Tables = require("../dbAssociation");
 
 const addNewProduct = async (newProduct) => {
-  console.log(newProduct);
+  const { productName, productDesc, productPrice, productImg, adminId } =
+    newProduct;
 
-  await Tables.productTable.save(newProduct);
-
-  // try {
-  //   const createdProduct = await Tables.ProductTable.create(newProduct);
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  const productTable = new Tables.ProductTable(
+    productName,
+    productDesc,
+    productPrice,
+    productImg,
+    adminId
+  );
+  
+  await productTable.save();
 };
 
 // const getAllProducts = async () => {
