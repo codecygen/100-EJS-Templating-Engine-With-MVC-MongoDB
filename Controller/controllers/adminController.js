@@ -1,4 +1,4 @@
-// const dbProductOperation = require("../../Model/operations/dbProductOperation");
+const dbProductOperation = require("../../Model/operations/dbProductOperation");
 // const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 
 exports.getAddProduct = (req, res, next) => {
@@ -20,12 +20,12 @@ exports.postAddProduct = async (req, res, next) => {
     productImg: req.body.newProductImage,
     // Express-Session-Keep-Cookie-in-req.session
     // here, we can assign req.session from everywhere because it is a cookie file.
-    // adminId: res.locals.selectedUser.adminId,
+    adminId: res.locals.selectedUser.adminId,
   };
 
   await dbProductOperation.addNewProduct(newProduct);
 
-  res.redirect("/");
+  // res.redirect("/");
 };
 
 // exports.getProducts = async (req, res, next) => {

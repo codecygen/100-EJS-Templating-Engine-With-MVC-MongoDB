@@ -3,6 +3,7 @@ const ProductTable = require("./tables/productTable");
 const UserTable = require("./tables/userTable");
 
 const userTable = new UserTable();
+const productTable = new ProductTable();
 
 // const CartTable = require("./tables/cartTable");
 // const OrderTable = require("../Model/tables/orderTable");
@@ -43,7 +44,7 @@ const userTable = new UserTable();
 // });
 
 module.exports = {
-  ProductTable,
+  productTable,
   userTable,
   // CartTable,
   // OrderTable,

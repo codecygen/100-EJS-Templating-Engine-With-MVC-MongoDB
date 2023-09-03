@@ -8,12 +8,16 @@ class ProductTable {
     this.productImg = productImg;
   }
 
-  save() {
-    const db = dbConnection.getDatabase();
-    db.collection("productTable")
-      .insertOne(this)
-      .then((result) => console.log(result))
-      .catch((err) => console.error(err));
+  async save(newProduct) {
+    try {
+      const db = dbConnection.getDatabase();
+      const collection = await db.collection("ProductTable");
+      const result = await collection.insertOne(newProduct);
+    } catch (err) {
+      console.error(err);
+    }
+
+    dbConnection.closeDatabase();
   }
 }
 
