@@ -56,15 +56,17 @@ class ProductTable {
   }
 
   static async adminProducts(adminId) {
-    let test;
+    let adminProducts = [];
     try {
-      test = adminId;
+      const db = dbConnection.getDatabase();
+      const cursor = await db.collection("ProductTable").find({adminId: adminId});
+      adminProducts = await cursor.toArray();
     } catch (err) {
       console.error(err);
       throw err;
     }
 
-    return test;
+    return adminProducts;
   }
 }
 

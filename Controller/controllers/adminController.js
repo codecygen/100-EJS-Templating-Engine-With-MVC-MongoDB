@@ -35,14 +35,12 @@ exports.getProducts = async (req, res, next) => {
     products = await dbAdminOperation.getAdminProducts(req.session.adminId);
   }
 
-  console.log(products);
-
-  // res.render("admin/adminProducts", {
-  //   pagePath: "/admin/products",
-  //   productList: products,
-  //   renderTitle: "Admin Products",
-  //   selectedUser: res.locals.selectedUser,
-  // });
+  res.render("admin/adminProducts", {
+    pagePath: "/admin/products",
+    productList: products,
+    renderTitle: "Admin Products",
+    selectedUser: res.locals.selectedUser,
+  });
 };
 
 // // editProduct and postEditProduct are responsible of
