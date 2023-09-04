@@ -51,17 +51,10 @@ const getAllUsers = async () => {
   return allUsers;
 };
 
-// const getOneUser = async (userId) => {
-//   let result;
-
-//   try {
-//     result = await Tables.UserTable.findByPk(userId);
-//   } catch (err) {
-//     console.error(err);
-//   }
-
-//   return result.toJSON();
-// };
+const getOneUser = async (userId) => {
+  const foundUser = await Tables.UserTable.findById(userId);
+  return foundUser;
+};
 
 const getAdminProducts = async (adminId) => {
   const adminProducts = await Tables.ProductTable.adminProducts(adminId);
@@ -72,6 +65,6 @@ module.exports = {
   checkAndCreateAdminsAndUsers,
   // getAllAdmins,
   getAllUsers,
-  // getOneUser,
+  getOneUser,
   getAdminProducts,
 };

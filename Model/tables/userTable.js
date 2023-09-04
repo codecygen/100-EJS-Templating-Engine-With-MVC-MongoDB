@@ -1,4 +1,5 @@
 const dbConnection = require("../dbConnection");
+const { ObjectId } = require("mongodb");
 
 class UserTable {
   constructor(userName, userEmail, adminId) {
@@ -39,6 +40,22 @@ class UserTable {
     }
 
     return foundUsers;
+  }
+
+  static async findById(userId) {
+    let foundUser;
+
+    try {
+      const db = dbConnection.getDatabase();
+      foundUser = await db
+        .collection("UserTable")
+        .findOne({ _id: new ObjectId(userId) });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+
+    return foundUser;
   }
 }
 

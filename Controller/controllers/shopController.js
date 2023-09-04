@@ -105,17 +105,17 @@ exports.getAllUsers = async (req, res, next) => {
   });
 };
 
-// exports.postSelectedUser = async (req, res, next) => {
-//   const loggedinUserId = req.body["logged-in-user-id"];
-//   const loggedinUser = await dbAdminOperation.getOneUser(loggedinUserId);
+exports.postSelectedUser = async (req, res, next) => {
+  const loggedinUserId = req.body["logged-in-user-id"];
+  const loggedinUser = await dbAdminOperation.getOneUser(loggedinUserId);
 
-//   req.session.userId = loggedinUser.id;
-//   req.session.userName = loggedinUser.userName;
-//   req.session.userEmail = loggedinUser.userEmail;
-//   req.session.adminId = loggedinUser.adminId;
+  req.session.userId = loggedinUser._id;
+  req.session.userName = loggedinUser.userName;
+  req.session.userEmail = loggedinUser.userEmail;
+  req.session.adminId = loggedinUser.adminId;
 
-//   res.redirect("/login");
-// };
+  res.redirect("/login");
+};
 
 // exports.getOrders = async (req, res, next) => {
 //   const loggedInUser = res.locals.selectedUser;
