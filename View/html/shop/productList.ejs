@@ -30,10 +30,10 @@
                         >
                         <div><%= product.productDesc %></div>
                         <div>$<%= product.productPrice %></div>
-                        <a href="/products/<%= product.id %>">Details</a>
+                        <a href="/products/<%= product._id %>">Details</a>
                         <%- include(
                             '../includes/buttons/addCartButton.ejs', 
-                            { productId: product.id }) 
+                            { productId: product._id }) 
                         %>
                     </li>
                 <% }) %>

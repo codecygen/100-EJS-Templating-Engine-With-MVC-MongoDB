@@ -33,17 +33,20 @@ const getAllProducts = async () => {
   // return allProducts;
 };
 
-// const getOneProduct = async (productId) => {
-//   let result;
+const getOneProduct = async (productId) => {
+  const foundProduct = await Tables.ProductTable.findById(productId);
 
-//   try {
-//     result = await Tables.ProductTable.findByPk(productId);
-//   } catch (err) {
-//     console.error(err);
-//   }
+  return foundProduct;
+  // let result;
 
-//   return result.toJSON();
-// };
+  // try {
+  //   result = await Tables.ProductTable.findByPk(productId);
+  // } catch (err) {
+  //   console.error(err);
+  // }
+
+  // return result.toJSON();
+};
 
 // const updateOneProduct = async (productId, updatedData) => {
 //   try {
@@ -68,7 +71,7 @@ const getAllProducts = async () => {
 module.exports = {
   addNewProduct,
   getAllProducts,
-  // getOneProduct,
+  getOneProduct,
   // updateOneProduct,
   // deleteOneProduct,
 };

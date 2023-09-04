@@ -1,4 +1,5 @@
 const dbConnection = require("../dbConnection");
+const { ObjectId } = require("mongodb");
 
 class ProductTable {
   constructor(productName, productDesc, productPrice, productImg, adminId) {
@@ -37,6 +38,21 @@ class ProductTable {
     }
 
     return foundProducts;
+  }
+
+  static async findById(productId) {
+    let foundProduct;
+    try {
+      const db = dbConnection.getDatabase();
+      foundProduct = await db
+        .collection("ProductTable")
+        .findOne({ _id: new ObjectId(productId) });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+
+    return foundProduct;
   }
 }
 

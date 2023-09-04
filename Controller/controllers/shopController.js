@@ -72,18 +72,18 @@ exports.getIndex = async (req, res, next) => {
 //   });
 // };
 
-// exports.getProduct = async (req, res, next) => {
-//   const productId = req.params.productId;
+exports.getProduct = async (req, res, next) => {
+  const productId = req.params.productId;
 
-//   const foundProductById = await dbProductOperation.getOneProduct(productId);
+  const foundProduct = await dbProductOperation.getOneProduct(productId);
 
-//   res.render("shop/productDetail", {
-//     pagePath: "/products",
-//     renderTitle: `${foundProductById.productName} Details`,
-//     product: foundProductById,
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+  res.render("shop/productDetail", {
+    pagePath: "/products",
+    renderTitle: `${foundProduct.productName} Details`,
+    product: foundProduct,
+    selectedUser: res.locals.selectedUser,
+  });
+};
 
 // exports.postDeleteCartItem = async (req, res, next) => {
 //   const loggedInUser = res.locals.selectedUser;
