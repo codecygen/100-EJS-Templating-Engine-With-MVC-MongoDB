@@ -6,16 +6,16 @@ const router = express.Router();
 const populateSelectedUser = require("../middleware/populateSelectedUser");
 router.use(populateSelectedUser);
 
-// const checkAdmin = require("../middleware/checkAdmin");
+const checkAdmin = require("../middleware/checkAdmin");
 
 // /admin/add-product
 // Because there is an extra layer in index.js of server
-router.get("/add-product", adminController.getAddProduct);
-router.post("/add-product", adminController.postAddProduct);
+router.get("/add-product", checkAdmin, adminController.getAddProduct);
+router.post("/add-product", checkAdmin, adminController.postAddProduct);
 
 // /admin/products
 // Because there is an extra layer in index.js of server
-// router.get("/products", checkAdmin, adminController.getProducts);
+router.get("/products", checkAdmin, adminController.getProducts);
 
 // /admin/products
 // Because there is an extra layer in index.js of server

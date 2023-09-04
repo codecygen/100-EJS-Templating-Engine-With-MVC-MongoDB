@@ -1,5 +1,5 @@
 const dbProductOperation = require("../../Model/operations/dbProductOperation");
-// const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
+const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 
 exports.getAddProduct = (req, res, next) => {
 
@@ -28,20 +28,22 @@ exports.postAddProduct = async (req, res, next) => {
   res.redirect("/");
 };
 
-// exports.getProducts = async (req, res, next) => {
-//   let products = false;
+exports.getProducts = async (req, res, next) => {
+  let products = false;
 
-//   if (req.session.adminId) {
-//     products = await dbAdminOperation.getAdminProducts(req.session.adminId);
-//   }
+  if (req.session.adminId) {
+    products = await dbAdminOperation.getAdminProducts(req.session.adminId);
+  }
 
-//   res.render("admin/adminProducts", {
-//     pagePath: "/admin/products",
-//     productList: products,
-//     renderTitle: "Admin Products",
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+  console.log(products);
+
+  // res.render("admin/adminProducts", {
+  //   pagePath: "/admin/products",
+  //   productList: products,
+  //   renderTitle: "Admin Products",
+  //   selectedUser: res.locals.selectedUser,
+  // });
+};
 
 // // editProduct and postEditProduct are responsible of
 // // "Edit" button.

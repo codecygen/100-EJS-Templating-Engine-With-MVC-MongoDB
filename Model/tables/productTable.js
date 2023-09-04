@@ -54,6 +54,18 @@ class ProductTable {
 
     return foundProduct;
   }
+
+  static async adminProducts(adminId) {
+    let test;
+    try {
+      test = adminId;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+
+    return test;
+  }
 }
 
 module.exports = ProductTable;
