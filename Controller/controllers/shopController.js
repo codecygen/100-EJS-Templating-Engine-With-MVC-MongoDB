@@ -10,21 +10,22 @@ const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 // app.use("/display", userViewRoute);
 // combination of these 2 routes become
 // "/display/products"
-// exports.getProducts = async (req, res, next) => {
-//   const products = await dbProductOperation.getAllProducts();
 
-//   // This means render productList.ejs
-//   // with renderTitle, pagePath and productList arguments
-//   // server will understand "allProducts" as allProducts.ejs because
-//   // it is indicated in index.js like that, html is the root folder for all
-//   // ejs files.
-//   res.render("shop/productList", {
-//     pagePath: "/products",
-//     productList: products,
-//     renderTitle: "All Products",
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+exports.getProducts = async (req, res, next) => {
+  const allProducts = await dbProductOperation.getAllProducts();
+
+  // This means render productList.ejs
+  // with renderTitle, pagePath and productList arguments
+  // server will understand "allProducts" as allProducts.ejs because
+  // it is indicated in index.js like that, html is the root folder for all
+  // ejs files.
+  res.render("shop/productList", {
+    pagePath: "/products",
+    productList: allProducts,
+    renderTitle: "All Products",
+    selectedUser: res.locals.selectedUser,
+  });
+};
 
 exports.getIndex = async (req, res, next) => {
   const products = await dbProductOperation.getAllProducts();

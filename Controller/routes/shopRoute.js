@@ -8,7 +8,7 @@ router.use(populateSelectedUser);
 
 router.get("/", shopController.getIndex);
 
-// router.get("/products", shopController.getProducts);
+router.get("/products", shopController.getProducts);
 
 // router.get("/checkout", shopController.getCheckout);
 
