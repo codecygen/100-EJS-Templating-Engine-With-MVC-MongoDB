@@ -11,7 +11,7 @@
                 <% userList.forEach(user => { %>
                     <!-- Express-Session-Keep-Cookie-in-req.session -->
                     <!-- here we assign the selected admin as a selected (default value) -->
-                    <option value="<%= user._id %>" <% if(user._id === selectedUser.userId) {%>selected<%}%> %>>
+                    <option value="<%= user._id.toString() %>" <% if(user._id.toString() === selectedUser.userId) {%>selected<%}%> %>>
                         <%= user.userName %> <% if (user.adminId) { %>(Admin)<% } %>
                     </option>
                 <% }); %>

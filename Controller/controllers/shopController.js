@@ -97,6 +97,9 @@ exports.getProduct = async (req, res, next) => {
 exports.getAllUsers = async (req, res, next) => {
   const allUsers = await dbAdminOperation.getAllUsers();
 
+  console.log(typeof res.locals.selectedUser.userId);
+  console.log(typeof allUsers[0]._id);
+
   res.render("shop/login", {
     pagePath: "/login",
     renderTitle: "Login",
