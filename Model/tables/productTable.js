@@ -2,7 +2,8 @@ const dbConnection = require("../dbConnection");
 const { ObjectId } = require("mongodb");
 
 class ProductTable {
-  constructor(productName, productDesc, productPrice, productImg, adminId) {
+  constructor(productName, productDesc, productPrice, productImg, adminId, _id) {
+    this._id = _id
     this.productName = productName;
     this.productDesc = productDesc;
     this.productPrice = productPrice;

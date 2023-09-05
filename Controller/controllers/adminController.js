@@ -45,28 +45,28 @@ exports.getProducts = async (req, res, next) => {
 
 // // editProduct and postEditProduct are responsible of
 // // "Edit" button.
-// exports.editProduct = async (req, res, next) => {
-//   const productId = req.params.productId;
+exports.editProduct = async (req, res, next) => {
+  const productId = req.params.productId;
 
-//   const editMode = req.query.edit;
-//   const isEditMode = editMode === "true";
+  const editMode = req.query.edit;
+  const isEditMode = editMode === "true";
 
-//   const foundProduct = await dbProductOperation.getOneProduct(productId);
+  const foundProduct = await dbProductOperation.getOneProduct(productId);
 
-//   // Normally if product cannot be found, an error message
-//   // should be shown.
-//   if (!foundProduct) {
-//     return res.redirect("/");
-//   }
+  // Normally if product cannot be found, an error message
+  // should be shown.
+  if (!foundProduct) {
+    return res.redirect("/");
+  }
 
-//   res.render("admin/addEditProduct", {
-//     renderTitle: "Edit Product",
-//     pagePath: "/admin/edit-product",
-//     editing: isEditMode,
-//     product: foundProduct,
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+  res.render("admin/addEditProduct", {
+    renderTitle: "Edit Product",
+    pagePath: "/admin/edit-product",
+    editing: isEditMode,
+    product: foundProduct,
+    selectedUser: res.locals.selectedUser,
+  });
+};
 
 // // editProduct and postEditProduct are responsible of
 // // "Edit" button.
