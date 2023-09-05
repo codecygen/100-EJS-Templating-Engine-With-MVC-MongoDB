@@ -25,7 +25,7 @@ router.get("/products", checkAdmin, adminController.getProducts);
 // "addEditProduct.ejs" and "adminProducts.ejs" are responsible of
 // handling all the logic and view.
 router.get("/edit-product/:productId", checkAdmin, adminController.editProduct);
-// router.post("/edit-product", checkAdmin, adminController.postEditProduct);
+router.post("/edit-product", checkAdmin, adminController.postEditProduct);
 
 // router.post("/delete-product", checkAdmin, adminController.postDeleteProduct);
 

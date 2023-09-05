@@ -2,8 +2,15 @@ const dbConnection = require("../dbConnection");
 const { ObjectId } = require("mongodb");
 
 class ProductTable {
-  constructor(productName, productDesc, productPrice, productImg, adminId, _id) {
-    this._id = _id
+  constructor(
+    _id,
+    productName,
+    productDesc,
+    productPrice,
+    productImg,
+    adminId,
+  ) {
+    this._id = _id;
     this.productName = productName;
     this.productDesc = productDesc;
     this.productPrice = productPrice;
@@ -12,12 +19,30 @@ class ProductTable {
   }
 
   async save() {
+    const db = dbConnection.getDatabase();
+    const collection = await db.collection("ProductTable");
+
+    const {_id, ...documentWithoutId} = this;
+
+    if (!this._id) {
+      try {
+        const result = await collection.insertOne(documentWithoutId);
+      } catch (err) {
+        console.error(err);
+      }
+
+      return;
+    }
+
+    // If saving product is in edit mode.
     try {
-      const db = dbConnection.getDatabase();
-      const collection = await db.collection("ProductTable");
-      const result = await collection.insertOne(this);
+      const result = await collection.updateOne(
+        { _id: new ObjectId(this._id) },
+        {$set: documentWithoutId}
+      );
     } catch (err) {
       console.error(err);
+      throw err;
     }
   }
 
@@ -58,7 +83,9 @@ class ProductTable {
     let adminProducts = [];
     try {
       const db = dbConnection.getDatabase();
-      const cursor = await db.collection("ProductTable").find({adminId: adminId});
+      const cursor = await db
+        .collection("ProductTable")
+        .find({ adminId: adminId });
       adminProducts = await cursor.toArray();
     } catch (err) {
       console.error(err);

@@ -1,5 +1,6 @@
 const dbProductOperation = require("../../Model/operations/dbProductOperation");
 const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
+const { ProductTable } = require("../../Model/dbAssociation");
 
 exports.getAddProduct = (req, res, next) => {
 
@@ -74,20 +75,22 @@ exports.editProduct = async (req, res, next) => {
 // // After all "POST" request logic
 // // always use res.redirect to avoid
 // // unnecessary loading screen on the page.
-// exports.postEditProduct = async (req, res, next) => {
-//   const productId = req.body.editedProductId;
+exports.postEditProduct = async (req, res, next) => {
+  const productId = req.body.editedProductId;
 
-//   const updatedProduct = {
-//     productName: req.body.newProductName,
-//     productDesc: req.body.newProductDescription,
-//     productPrice: req.body.newProductPrice,
-//     productImg: req.body.newProductImage,
-//   };
+  const updatedProduct = {
+    _id: productId,
+    productName: req.body.newProductName,
+    productDesc: req.body.newProductDescription,
+    productPrice: req.body.newProductPrice,
+    productImg: req.body.newProductImage,
+    adminId: res.locals.selectedUser.adminId,
+  };
 
-//   await dbProductOperation.updateOneProduct(productId, updatedProduct);
+  await dbProductOperation.updateOneProduct(updatedProduct);
 
-//   res.redirect("");
-// };
+  res.redirect("/");
+};
 
 // exports.postDeleteProduct = async (req, res, next) => {
 //   const deletedId = req.body.deletedProductId;
