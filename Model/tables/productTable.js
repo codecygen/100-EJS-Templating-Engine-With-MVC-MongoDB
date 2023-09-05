@@ -18,8 +18,6 @@ class ProductTable {
     } catch (err) {
       console.error(err);
     }
-
-    dbConnection.closeDatabase();
   }
 
   static async getProducts() {
