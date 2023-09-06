@@ -52,20 +52,14 @@ const updateOneProduct = async (updatedData) => {
   await productTable.save();
 };
 
-// const deleteOneProduct = async (productId) => {
-//   try {
-//     const result = await Tables.ProductTable.destroy({
-//       where: { id: productId },
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+const deleteOneProduct = async (productId) => {
+  const result = await Tables.ProductTable.destroy(productId);
+};
 
 module.exports = {
   addNewProduct,
   getAllProducts,
   getOneProduct,
   updateOneProduct,
-  // deleteOneProduct,
+  deleteOneProduct,
 };

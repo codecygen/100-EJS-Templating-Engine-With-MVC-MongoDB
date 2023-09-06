@@ -8,7 +8,7 @@ class ProductTable {
     productDesc,
     productPrice,
     productImg,
-    adminId,
+    adminId
   ) {
     this._id = _id;
     this.productName = productName;
@@ -22,7 +22,7 @@ class ProductTable {
     const db = dbConnection.getDatabase();
     const collection = await db.collection("ProductTable");
 
-    const {_id, ...documentWithoutId} = this;
+    const { _id, ...documentWithoutId } = this;
 
     if (!this._id) {
       try {
@@ -38,7 +38,7 @@ class ProductTable {
     try {
       const result = await collection.updateOne(
         { _id: new ObjectId(this._id) },
-        {$set: documentWithoutId}
+        { $set: documentWithoutId }
       );
     } catch (err) {
       console.error(err);
@@ -93,6 +93,18 @@ class ProductTable {
     }
 
     return adminProducts;
+  }
+
+  static async destroy(productId) {
+    try {
+      const db = dbConnection.getDatabase();
+      await db
+        .collection("ProductTable")
+        .deleteOne({ _id: new ObjectId(productId) });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
 }
 

@@ -92,10 +92,10 @@ exports.postEditProduct = async (req, res, next) => {
   res.redirect("/");
 };
 
-// exports.postDeleteProduct = async (req, res, next) => {
-//   const deletedId = req.body.deletedProductId;
+exports.postDeleteProduct = async (req, res, next) => {
+  const deletedId = req.body.deletedProductId;
 
-//   await dbProductOperation.deleteOneProduct(deletedId);
+  await dbProductOperation.deleteOneProduct(deletedId);
 
-//   res.redirect("/admin/products");
-// };
+  res.redirect("/admin/products");
+};
