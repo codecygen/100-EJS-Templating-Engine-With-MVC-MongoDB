@@ -4,6 +4,7 @@
 - Create a database called "shopping-website" in MySQL
 - Create .env file and provide the given content.
 ```javascript
+URL="mongodb+srv://UserName:UserPass@ClusterName.b99wetu.mongodb.net/DBName?retryWrites=true&w=majority"
 DB="mysql"
 SCHEMA="shopping-website"
 ADMIN="root"
@@ -50,10 +51,11 @@ EXPRESS_SESSION_KEY="your-secret-key"
 
 # Database (MySQL with sequelize):
 
-- MySQL is used for this project. "mysql2" and "sequelize" packages are needed to be installed from "npm" for access to the database and sequelize the project respectively.
+- MongoDB is used for this project. "mongodb" and "uuidv4" packages are needed to be installed from "npm" for access to the database.
 
 - environmental variables used for this project. I put these variables inside
 ```javascript
+URL="mongodb+srv://UserName:UserPass@ClusterName.b99wetu.mongodb.net/DBName?retryWrites=true&w=majority"
 DB="mysql"
 SCHEMA="shopping-website"
 ADMIN="root"
@@ -65,7 +67,7 @@ EXPRESS_SESSION_KEY="your-secret-key"
 
 - **MongoDB-Connect-Database** <br>
 Basically, **"./Model/database/dbConnection.js"** is used in **"./index.js"** to connect to database.
-- **MySQL-Sequelize-Create-And-Associate-Models** <br>
+- **MongoDB-Create-And-Associate-Models** <br>
 **"./Model/database/dbAssociation.js"** is used in **./index.js** so that all model associations and models are properly set. We need to only import dbAssociations.js in index.js.
 - **MySQL-Sequelize-Manage-Database-Function-Operations** <br>
 **./Model/operations/dbProductOperation.js** is used in controllers like **./Controller/controllers/adminController.js**
