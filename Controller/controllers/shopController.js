@@ -1,6 +1,6 @@
 const dbProductOperation = require("../../Model/operations/dbProductOperation");
 const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
-// const dbCartOperation = require("../../Model/operations/dbCartOperation");
+const dbCartOperation = require("../../Model/operations/dbCartOperation");
 // const dbOrderOperation = require("../../Model/operations/dbOrderOperation");
 
 // while rendering, we send "products" data
@@ -38,20 +38,27 @@ exports.getIndex = async (req, res, next) => {
   });
 };
 
-// exports.getCart = async (req, res, next) => {
-//   const currentUser = await dbAdminOperation.getOneUser(req.session.userId);
+exports.getCart = async (req, res, next) => {
+  const currentUser = await dbAdminOperation.getOneUser(req.session.userId);
 
-//   const [cartProductList, cartTotalPrice] =
-//     await dbCartOperation.getCartProducts(currentUser);
+  const [cartProductList, cartTotalPrice] =
+    await dbCartOperation.getCartProducts(currentUser);
 
-//   res.render("shop/cart", {
-//     pagePath: "/cart",
-//     renderTitle: "Your Cart",
-//     cartProducts: cartProductList,
-//     cartPrice: cartTotalPrice,
-//     selectedUser: res.locals.selectedUser,
-//   });
-// };
+  console.log(cartProductList);
+  console.log(cartTotalPrice);
+
+
+  // const [cartProductList, cartTotalPrice] =
+  //   await dbCartOperation.getCartProducts(currentUser);
+
+  // res.render("shop/cart", {
+  //   pagePath: "/cart",
+  //   renderTitle: "Your Cart",
+  //   cartProducts: cartProductList,
+  //   cartPrice: cartTotalPrice,
+  //   selectedUser: res.locals.selectedUser,
+  // });
+};
 
 // exports.postCart = async (req, res, next) => {
 //   const addedProductId = req.body.addedProductId;

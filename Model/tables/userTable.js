@@ -2,10 +2,11 @@ const dbConnection = require("../dbConnection");
 const { ObjectId } = require("mongodb");
 
 class UserTable {
-  constructor(userName, userEmail, adminId) {
+  constructor(userName, userEmail, adminId, userCart) {
     this.userName = userName;
     this.userEmail = userEmail;
     this.adminId = adminId;
+    this.userCart = userCart;
   }
 
   async createUsers(usersArray) {

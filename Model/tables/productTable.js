@@ -13,7 +13,7 @@ class ProductTable {
     this._id = _id;
     this.productName = productName;
     this.productDesc = productDesc;
-    this.productPrice = productPrice;
+    this.productPrice = +productPrice;
     this.productImg = productImg;
     this.adminId = adminId;
   }
