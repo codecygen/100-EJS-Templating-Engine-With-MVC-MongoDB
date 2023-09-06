@@ -45,6 +45,11 @@ const getCartProducts = async (currentUser) => {
   const userCartDB = foundUser.userCart;
   let totalPrice = 0;
 
+  if (!userCartDB) {
+    // return [allCartItems, totalPrice];
+    return [[], 0];
+  }
+
   const allCartItems = await Promise.all(
     userCartDB.map(async (cartItem) => {
       const productDetails = await dbProductOperation.getOneProduct(

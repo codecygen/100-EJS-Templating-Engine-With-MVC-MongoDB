@@ -44,20 +44,13 @@ exports.getCart = async (req, res, next) => {
   const [cartProductList, cartTotalPrice] =
     await dbCartOperation.getCartProducts(currentUser);
 
-  console.log(cartProductList);
-  console.log(cartTotalPrice);
-
-
-  // const [cartProductList, cartTotalPrice] =
-  //   await dbCartOperation.getCartProducts(currentUser);
-
-  // res.render("shop/cart", {
-  //   pagePath: "/cart",
-  //   renderTitle: "Your Cart",
-  //   cartProducts: cartProductList,
-  //   cartPrice: cartTotalPrice,
-  //   selectedUser: res.locals.selectedUser,
-  // });
+  res.render("shop/cart", {
+    pagePath: "/cart",
+    renderTitle: "Your Cart",
+    cartProducts: cartProductList,
+    cartPrice: cartTotalPrice,
+    selectedUser: res.locals.selectedUser,
+  });
 };
 
 // exports.postCart = async (req, res, next) => {
