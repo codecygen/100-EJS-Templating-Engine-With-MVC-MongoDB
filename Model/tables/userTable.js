@@ -31,7 +31,6 @@ class UserTable {
       const db = dbConnection.getDatabase();
       const cursor = await db.collection("UserTable").find();
       foundUsers = await cursor.toArray();
-
     } catch (err) {
       console.error("Error fetching users:", err);
       throw err;
@@ -57,6 +56,66 @@ class UserTable {
     }
 
     return foundUser;
+  }
+
+  static async updateCart(currentUser, alreadyAddedProductIndex, addedProduct) {
+    const db = dbConnection.getDatabase();
+    const userCollection = await db.collection("UserTable");
+    let quantity = 1;
+
+    const isProductAlreadyAdded =
+      alreadyAddedProductIndex === -1 ? false : true;
+
+
+    // {
+    //   _id: new ObjectId("64e52e5ba9f5d11228df6a1a"),
+    //   userName: 'Aras',
+    //   userEmail: 'aras@gmail.com',
+    //   adminId: 'ea764199-dcb7-43bb-8e64-7afb783df70c',
+    //   userCart: [
+    //     { _id: new ObjectId("64f8e789338dc73937e88751"), qty: 6 },
+    //     { _id: new ObjectId("64f8eef47af9ade5a236939f"), qty: 6 }
+    //   ]
+    // }
+
+    // updates the quantity of an existing userCart.
+
+    if (isProductAlreadyAdded) {
+      quantity = currentUser.userCart[alreadyAddedProductIndex].qty + 1;
+
+      try {
+        await userCollection.updateOne(
+          { _id: currentUser._id },
+          { $set: { [`userCart.${alreadyAddedProductIndex}.qty`]: quantity } }
+        );
+      } catch (err) {
+        console.error(err);
+      }
+
+      return;
+    }
+
+    // {
+    //   _id: new ObjectId("64e52e5ba9f5d11228df6a1a"),
+    //   userName: 'Aras',
+    //   userEmail: 'aras@gmail.com',
+    //   adminId: 'ea764199-dcb7-43bb-8e64-7afb783df70c',
+    //   userCart: [
+    //     { _id: new ObjectId("64f8e789338dc73937e88751"), qty: 6 },
+    //     { _id: new ObjectId("64f8eef47af9ade5a236939f"), qty: 6 }
+    //   ]
+    // }
+
+    // adds a new line to userCart
+
+    try {
+      await userCollection.updateOne(
+        { _id: currentUser._id },
+        { $push: { userCart: {_id: addedProduct._id, qty: quantity} } }
+      );
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

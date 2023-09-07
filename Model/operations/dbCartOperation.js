@@ -3,33 +3,19 @@ const dbAdminOperation = require("./dbAdminOperation");
 const dbProductOperation = require("./dbProductOperation");
 
 const addUserAndProductToCart = async (currentUser, addedProduct) => {
-  const [existingCartProduct, totalPrice] = await getCartProducts(currentUser);
+  let alreadyAddedProductIndex = -1;
 
-  console.log(currentUser);
-  console.log(addedProduct);
-  console.log(existingCartProduct);
+  if (currentUser.userCart) {
+    alreadyAddedProductIndex = currentUser.userCart.findIndex((item) =>
+      addedProduct._id.equals(item._id)
+    );
+  }
 
-  // if (existingCartProduct) {
-  //   try {
-  //     await existingCartProduct.update({
-  //       quantity: existingCartProduct.quantity + 1,
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-
-  //   return;
-  // }
-
-  // try {
-  //   await Tables.CartTable.create({
-  //     quantity: 1,
-  //     UserTableId: currentUser.id,
-  //     ProductTableId: addedProduct.id,
-  //   });
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  await Tables.UserTable.updateCart(
+    currentUser,
+    alreadyAddedProductIndex,
+    addedProduct
+  );
 };
 
 const getCartProducts = async (currentUser) => {
@@ -39,8 +25,8 @@ const getCartProducts = async (currentUser) => {
   let totalPrice = 0;
 
   if (!userCartDB) {
-    // return [allCartItems, totalPrice];
-    return [[], 0];
+    // return [allCartItems, totalPrice, userTable.userCart];
+    return [[], 0, []];
   }
 
   const allCartItems = await Promise.all(
@@ -56,7 +42,7 @@ const getCartProducts = async (currentUser) => {
     totalPrice += item.productPrice * item.productQty;
   });
 
-  return [allCartItems, totalPrice];
+  return [allCartItems, totalPrice, userCartDB];
 };
 
 // const deleteCartProduct = async (currentUser, deletedItem) => {
