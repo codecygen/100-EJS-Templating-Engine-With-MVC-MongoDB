@@ -53,16 +53,16 @@ exports.getCart = async (req, res, next) => {
   });
 };
 
-// exports.postCart = async (req, res, next) => {
-//   const addedProductId = req.body.addedProductId;
-//   const addedProduct = await dbProductOperation.getOneProduct(addedProductId);
+exports.postCart = async (req, res, next) => {
+  const addedProductId = req.body.addedProductId;
+  const addedProduct = await dbProductOperation.getOneProduct(addedProductId);
 
-//   const currentUser = await dbAdminOperation.getOneUser(req.session.userId);
+  const currentUser = await dbAdminOperation.getOneUser(req.session.userId);
 
-//   await dbCartOperation.addUserAndProductToCart(currentUser, addedProduct);
+  await dbCartOperation.addUserAndProductToCart(currentUser, addedProduct);
 
-//   res.redirect("/");
-// };
+  res.redirect("/");
+};
 
 // exports.getCheckout = (req, res, next) => {
 //   res.render("shop/checkout", {

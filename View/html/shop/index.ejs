@@ -32,7 +32,7 @@
                         <div>$<%= product.productPrice %></div>
                         <%- include(
                             '../includes/buttons/addCartButton.ejs', 
-                            { productId: product.id }) 
+                            { productId: product._id }) 
                         %>
                     </li>
                 <% }) %>
