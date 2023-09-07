@@ -3,21 +3,11 @@ const dbAdminOperation = require("./dbAdminOperation");
 const dbProductOperation = require("./dbProductOperation");
 
 const addUserAndProductToCart = async (currentUser, addedProduct) => {
+  const [existingCartProduct, totalPrice] = await getCartProducts(currentUser);
+
   console.log(currentUser);
   console.log(addedProduct);
-  
-  // let existingCartProduct;
-
-  // try {
-  //   existingCartProduct = await Tables.CartTable.findOne({
-  //     where: {
-  //       UserTableId: currentUser.id,
-  //       ProductTableId: addedProduct.id,
-  //     },
-  //   });
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  console.log(existingCartProduct);
 
   // if (existingCartProduct) {
   //   try {
