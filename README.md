@@ -57,13 +57,7 @@ EXPRESS_SESSION_KEY="your-secret-key"
 Basically, **"./Model/database/dbConnection.js"** is used in **"./index.js"** to connect to database.
 - **MongoDB-Create-And-Associate-Models** <br>
 **"./Model/database/dbAssociation.js"** is used in **./index.js** so that all model associations and models are properly set. We need to only import dbAssociations.js in index.js.
-- **MySQL-Sequelize-Manage-Database-Function-Operations** <br>
+- **MongoDB-Sequelize-Manage-Database-Function-Operations** <br>
 **./Model/operations/dbProductOperation.js** is used in controllers like **./Controller/controllers/adminController.js**
-- **MySQL-Sequelize-One-to-Many-Relation** <br>
-Here, **userTable.js** and **productTable.js** are used for this association. It means an admin create many products but a product can only belong to a single admin. A product cannot be created by many admins but an admin can create many products.
 - **Express-Session-Keep-Cookie-in-req.session** <br>
 express-session is a package and it keeps some session files in it so the selected admin will be known by the system.
-- **MySQL-Sequelize-Many-to-Many-Relation** <br>
-Here, **userTable.js** and **productTable.js** are used for this association with a join table which is called **cartTable.js**. This is for Cart that users will create to buy prouducts.
-- **Find-Max-Number-For-Key-In-Table**
-Query the max number for a given key and increase it accordingly for the next query. For example, you want to have orderNumber to be increased by 1 in each order starting from 1. You can use max method to achieve this.

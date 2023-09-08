@@ -1,3 +1,4 @@
+// MongoDB-Sequelize-Manage-Database-Function-Operations
 const Tables = require("../dbAssociation");
 
 const addNewProduct = async (newProduct) => {
