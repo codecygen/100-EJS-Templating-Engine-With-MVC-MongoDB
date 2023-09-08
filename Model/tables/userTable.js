@@ -19,8 +19,6 @@ class UserTable {
       (err) => console.error(err);
     }
 
-    dbConnection.closeDatabase();
-
     return result;
   }
 
@@ -66,7 +64,6 @@ class UserTable {
     const isProductAlreadyAdded =
       alreadyAddedProductIndex === -1 ? false : true;
 
-
     // {
     //   _id: new ObjectId("64e52e5ba9f5d11228df6a1a"),
     //   userName: 'Aras',
@@ -111,10 +108,24 @@ class UserTable {
     try {
       await userCollection.updateOne(
         { _id: currentUser._id },
-        { $push: { userCart: {_id: addedProduct._id, qty: quantity} } }
+        { $push: { userCart: { _id: addedProduct._id, qty: quantity } } }
       );
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  static async removeCartItem(userId, productId) {
+    try {
+      const db = dbConnection.getDatabase();
+      const userCollection = await db.collection("UserTable");
+      userCollection.updateOne(
+        { _id: new ObjectId(userId) },
+        { $pull: { userCart: { _id: new ObjectId(productId) } } }
+      );
+    } catch (err) {
+      console.error(err);
+      throw err;
     }
   }
 }

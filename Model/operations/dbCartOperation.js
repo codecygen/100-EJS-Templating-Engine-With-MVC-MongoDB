@@ -45,26 +45,15 @@ const getCartProducts = async (currentUser) => {
   return [allCartItems, totalPrice, userCartDB];
 };
 
-// const deleteCartProduct = async (currentUser, deletedItem) => {
-//   let foundUser;
-
-//   try {
-//     foundUser = await Tables.UserTable.findOne({
-//       where: { id: currentUser.userId },
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-
-//   try {
-//     await foundUser.removeProductTable(deletedItem);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+const deleteCartProduct = async (currentUser, deletedProductId) => {
+  await Tables.UserTable.removeCartItem(
+    currentUser.userId,
+    deletedProductId
+  );
+};
 
 module.exports = {
   addUserAndProductToCart,
   getCartProducts,
-  // deleteCartProduct,
+  deleteCartProduct,
 };

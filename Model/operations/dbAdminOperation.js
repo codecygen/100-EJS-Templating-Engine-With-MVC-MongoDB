@@ -29,7 +29,9 @@ const checkAndCreateAdminsAndUsers = async () => {
     },
   ];
 
-  await Tables.userTable.createUsers(newUsers);
+  const userTable = new Tables.UserTable();
+
+  await userTable.createUsers(newUsers);
 };
 
 // const getAllAdmins = async () => {
