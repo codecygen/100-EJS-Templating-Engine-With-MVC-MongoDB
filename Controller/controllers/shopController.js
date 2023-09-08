@@ -1,7 +1,7 @@
 const dbProductOperation = require("../../Model/operations/dbProductOperation");
 const dbAdminOperation = require("../../Model/operations/dbAdminOperation");
 const dbCartOperation = require("../../Model/operations/dbCartOperation");
-// const dbOrderOperation = require("../../Model/operations/dbOrderOperation");
+const dbOrderOperation = require("../../Model/operations/dbOrderOperation");
 
 // while rendering, we send "products" data
 // as "productList"
@@ -129,9 +129,9 @@ exports.postSelectedUser = async (req, res, next) => {
 //   });
 // };
 
-// exports.orderCart = async (req, res, next) => {
-//   const loggedInUser = res.locals.selectedUser;
-//   await dbOrderOperation.postCartToOrders(loggedInUser);
+exports.orderCart = async (req, res, next) => {
+  const loggedInUser = res.locals.selectedUser;
+  await dbOrderOperation.postCartToOrders(loggedInUser);
 
-//   res.redirect("/orders");
-// };
+  // res.redirect("/orders");
+};
