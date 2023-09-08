@@ -5,12 +5,6 @@
 - Create .env file and provide the given content.
 ```javascript
 URL="mongodb+srv://UserName:UserPass@ClusterName.b99wetu.mongodb.net/DBName?retryWrites=true&w=majority"
-DB="mysql"
-SCHEMA="shopping-website"
-ADMIN="root"
-PASS="root"
-HOST="localhost"
-PORT=3306
 EXPRESS_SESSION_KEY="your-secret-key"
 ```
 - Start server with "npm start" command which will trigger "nodemon start".
@@ -56,12 +50,6 @@ EXPRESS_SESSION_KEY="your-secret-key"
 - environmental variables used for this project. I put these variables inside
 ```javascript
 URL="mongodb+srv://UserName:UserPass@ClusterName.b99wetu.mongodb.net/DBName?retryWrites=true&w=majority"
-DB="mysql"
-SCHEMA="shopping-website"
-ADMIN="root"
-PASS="root"
-HOST="localhost"
-PORT=3306
 EXPRESS_SESSION_KEY="your-secret-key"
 ```
 
