@@ -128,6 +128,32 @@ class UserTable {
       throw err;
     }
   }
+
+  // {
+  //   _id: new ObjectId("64e52e5ba9f5d11228df6a1a"),
+  //   userName: 'Aras',
+  //   userEmail: 'aras@gmail.com',
+  //   adminId: 'ea764199-dcb7-43bb-8e64-7afb783df70c',
+  //   userCart: [
+  //     { _id: new ObjectId("64f8e789338dc73937e88751"), qty: 6 },
+  //     { _id: new ObjectId("64f8eef47af9ade5a236939f"), qty: 6 }
+  //   ]
+  // }
+
+  // removes the entire userCart
+
+  static async removeAllCart(userId) {
+    try {
+      const db = dbConnection.getDatabase();
+      const userCollection = await db.collection("UserTable");
+      await userCollection.updateOne(
+        { _id: new ObjectId(userId) },
+        { $set: { userCart: [] } }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
 }
 
 module.exports = UserTable;

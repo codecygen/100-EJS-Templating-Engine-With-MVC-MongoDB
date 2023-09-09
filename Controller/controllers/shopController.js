@@ -133,5 +133,5 @@ exports.orderCart = async (req, res, next) => {
   const loggedInUser = res.locals.selectedUser;
   await dbOrderOperation.postCartToOrders(loggedInUser);
 
-  // res.redirect("/orders");
+  res.redirect("/orders");
 };
