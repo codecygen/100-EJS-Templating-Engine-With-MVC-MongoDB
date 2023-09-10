@@ -1,54 +1,37 @@
 const Tables = require("../dbAssociation");
+const dbProductOperation = require("./dbProductOperation");
 
 const getOrders = async (currentUser) => {
+  const productIdsAndQty = await Tables.OrderTable.getOrderList(
+    currentUser.userId
+  );
 
-  Tables.OrderTable.getOrderList(currentUser.userId);
+  let detailedOrderList = [];
 
-  // const foundUser = await Tables.UserTable.findOne({
-  //   where: { id: currentUser.userId },
-  // });
+  for (order of productIdsAndQty) {
+    const modifiedOrder = await Promise.all(order.map(async (product) => {
+      const productDetails = await dbProductOperation.getOneProduct(
+        product.productId
+      );
 
-  // const foundOrders = await foundUser.getOrderTables();
+      return {
+        ...productDetails,
+        qty: product.qty,
+      };
+    }));
 
-  // // Find-Max-Number-For-Key-In-Table
-  // const maxOderNumber = await Tables.OrderTable.max("orderNumber", {
-  //   where: { userTableId: foundUser.toJSON().id },
-  // });
+    detailedOrderList.push(modifiedOrder);
+  }
 
-  // let detailedOrderList = [];
-
-  // for (let i = 0; i < maxOderNumber; i++) {
-  //   let singleOrderList = [];
-    
-  //   for (const foundOrder of foundOrders) {
-  //     if (foundOrder.orderNumber === i + 1) {
-
-  //       const orderProductDB = await foundOrder.getProductTable({
-  //         where: { id: foundOrder.ProductTableId },
-  //       });
-
-  //       singleOrderList = [
-  //         ...singleOrderList,
-  //         {
-  //           ...foundOrder.toJSON(),
-  //           productDetails: { ...orderProductDB.toJSON() },
-  //         },
-  //       ];
-  //     }
-  //   }
-
-  //   detailedOrderList.push(singleOrderList);
-  // }
-
-  // return detailedOrderList;
+  return detailedOrderList;
 };
 
 const postCartToOrders = async (currentUser) => {
   const foundUser = await Tables.UserTable.findById(currentUser.userId);
   const foundCartItems = foundUser.userCart;
 
-  const adjustedCartItems = foundCartItems.map(item => {
-    return {productId: item._id, qty: item.qty};
+  const adjustedCartItems = foundCartItems.map((item) => {
+    return { productId: item._id, qty: item.qty };
   });
 
   // console.log(foundUser._id);
@@ -63,7 +46,7 @@ const postCartToOrders = async (currentUser) => {
   await orderTable.save();
 };
 
-module.exports = { 
-  getOrders, 
+module.exports = {
+  getOrders,
   postCartToOrders,
- };
+};

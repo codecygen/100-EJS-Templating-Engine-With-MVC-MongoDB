@@ -49,6 +49,8 @@ class OrderTable {
     }
 
     const productIdsAndQty = foundOrders.orders;
+
+    return productIdsAndQty;
   }
 }
 
