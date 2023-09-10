@@ -5,16 +5,16 @@
 
     <main>
         <% if (orderList.length > 0) { %>
-            <% let i = 1 %>
+            <% let orderNumber = 1 %>
             <% orderList.forEach((order) => { %>
-                <p>Order <%= i %></p>
+                <p>Order <%= orderNumber %></p>
                 <% order.forEach((product) => { %>
                     <ul>
                         <li><%= product.productName %> (<%= product.qty %>)</li>
                     </ul>
                 <% }); %>
 
-                <% i++ %>
+                <% orderNumber++ %>
             <% }); %>
         <% } else { %>
             <p>Nothing to show in orders page yet!</p>
