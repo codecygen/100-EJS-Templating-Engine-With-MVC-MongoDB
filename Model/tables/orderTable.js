@@ -16,22 +16,39 @@ class OrderTable {
     // console.log(this.userId);
 
     try {
-        await orderCollection.updateOne(
-          { userId: this.userId },
-          {
-            $push: {
-              orders: {
-                $each: [this.orderList]
-              },
+      await orderCollection.updateOne(
+        { userId: this.userId },
+        {
+          $push: {
+            orders: {
+              $each: [this.orderList],
             },
           },
-          { upsert: true } // This creates a new document if one doesn't exist for the specified userId
-        );
-      } catch (err) {
-        console.error(err);
-      }
+        },
+        { upsert: true } // This creates a new document if one doesn't exist for the specified userId
+      );
+    } catch (err) {
+      console.error(err);
+    }
 
     await UserTable.removeAllCart(this.userId);
+  }
+
+  static async getOrderList(userId) {
+
+    let foundOrders;
+
+    try {
+      const db = dbConnection.getDatabase();
+      foundOrders = await db
+        .collection("OrderTable")
+        .findOne({ userId: new ObjectId(userId) });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+
+    const productIdsAndQty = foundOrders.orders;
   }
 }
 
