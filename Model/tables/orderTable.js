@@ -48,6 +48,11 @@ class OrderTable {
       throw err;
     }
 
+    if(!foundOrders) {
+      foundOrders = {};
+      foundOrders.orders = [];
+    }
+
     const productIdsAndQty = foundOrders.orders;
 
     return productIdsAndQty;
