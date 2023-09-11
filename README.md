@@ -61,3 +61,5 @@ Basically, **"./Model/database/dbConnection.js"** is used in **"./index.js"** to
 **./Model/operations/dbProductOperation.js** is used in controllers like **./Controller/controllers/adminController.js**
 - **Express-Session-Keep-Cookie-in-req.session** <br>
 express-session is a package and it keeps some session files in it so the selected admin will be known by the system.
+- **MongoDB-Queries**
+All query related info kept inside "/Model/tables/orderTable.js", "/Model/tables/productTable.js" and "/Model/tables/userTable.js".
